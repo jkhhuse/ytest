@@ -21,6 +21,7 @@ gulp.task('webpack:dist', done => {
 });
 
 function webpackWrapper(watch, conf, done) {
+  //利用node环境加载webpack配置文件
   const webpackBundler = webpack(conf);
 
   const webpackChangeHandler = (err, stats) => {
@@ -42,6 +43,7 @@ function webpackWrapper(watch, conf, done) {
   };
 
   if (watch) {
+    //与CLI中webpack --watch类似
     webpackBundler.watch(200, webpackChangeHandler);
   } else {
     webpackBundler.run(webpackChangeHandler);
